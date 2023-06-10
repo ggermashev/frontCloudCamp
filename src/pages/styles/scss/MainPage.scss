@@ -1,0 +1,44 @@
+.main-page {
+  position: relative;
+  background-color: white;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+
+  p, h3 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .header {
+    border-bottom: 2px solid lightblue;
+    width: 100%;
+  }
+
+  .ava-img {
+    width: 100px;
+    height: 100px;
+    background-color: lightblue;
+    border-radius: 100%;
+    border: 2px solid lightblue;
+    margin: {
+      right: 20px;
+      bottom: 20px;
+    }
+  }
+
+  .social-link {
+    padding: {
+      right: 10px;
+    };
+  }
+
+  .input-field {
+    margin-top: 20px;
+  }
+
+  .btn{
+    margin-top: 40px;
+  }
+
+}

@@ -1,0 +1,15 @@
+.form-page {
+  position: relative;
+  background-color: white;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 40px;
+}
+.form-page .step-img {
+  width: 100%;
+}
+.form-page .navigation {
+  margin-top: 40px;
+}
+
+/*# sourceMappingURL=FormPage.css.map */

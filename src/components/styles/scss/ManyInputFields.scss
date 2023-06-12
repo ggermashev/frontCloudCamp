@@ -1,0 +1,18 @@
+.many-input-fields {
+  .input-field {
+    margin: 5px 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .remove-img {
+    margin-left: 10px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}

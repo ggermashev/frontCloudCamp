@@ -12,4 +12,28 @@
   .navigation {
     margin-top: 40px;
   }
+
+  .text-input {
+    width: 100% !important;
+  }
+}
+
+.success-window {
+  height: 100%;
+  justify-content: space-around!important;
+}
+
+.error-window {
+  height: 100%;
+  justify-content: space-around!important;
+
+  .x {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .btn {
+    align-self: end;
+  }
 }

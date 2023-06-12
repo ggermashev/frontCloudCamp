@@ -1,17 +1,39 @@
+.btn-blue {
+  background-color: blue;
+  color: white;
+  border: 2px solid blue;
+
+  &:hover {
+    background-color: blue;
+    color: lightblue;
+  }
+}
+
+.btn-white {
+  background-color: white;
+  color: blue;
+  border: 2px solid blue;
+
+  &:hover {
+    background-color: white;
+    color: blue;
+    border-color: lightblue;
+  }
+}
+
 .btn {
   padding: {
     top: 10px;
     bottom: 10px;
-    left: 20px;
-    right: 20px;
-  }
-  background-color: blue;
-  color: white;
-  border: none;
-
-  &:hover {
-    background-color: lightblue;
-    color: black;
+    left: 15px;
+    right: 15px;
   }
 
+  p.p-btn {
+    padding: 0!important;
+    margin: 0!important;
+  }
 }
+
+
+

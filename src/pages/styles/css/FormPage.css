@@ -11,5 +11,24 @@
 .form-page .navigation {
   margin-top: 40px;
 }
+.form-page .text-input {
+  width: 100% !important;
+}
+
+.success-window {
+  height: 100%;
+  justify-content: space-around !important;
+}
+
+.error-window {
+  height: 100%;
+  justify-content: space-around !important;
+}
+.error-window .x:hover {
+  cursor: pointer;
+}
+.error-window .btn {
+  align-self: end;
+}
 
 /*# sourceMappingURL=FormPage.css.map */

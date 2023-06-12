@@ -1,13 +1,10 @@
-.input-field {
+.select-input {
   text-align: start;
   min-width: 50%;
 
   p {
-    margin: 0;
     padding: 0;
+    margin: 0;
   }
 
-  p.error {
-    color: red;
-  }
 }

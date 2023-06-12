@@ -1,0 +1,14 @@
+.many-input-fields .input-field {
+  margin: 5px 0;
+}
+.many-input-fields p {
+  margin: 0;
+}
+.many-input-fields .remove-img {
+  margin-left: 10px;
+}
+.many-input-fields .remove-img:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=ManyInputFields.css.map */

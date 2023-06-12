@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Image, Row} from "react-bootstrap";
 import "./styles/css/MainPage.css"
 import SocialLink from "../components/SocialLink";
 import InputField from "../components/InputField";
 import {useAppDispatch, useAppSelector} from "../redux";
-import {setEmail, setPhone} from "../redux/formSlice";
+import {setEmail, setPhone, setStep0IsValid} from "../redux/formSlice";
 import Btn from "../components/Btn";
 import {useNavigate} from "react-router-dom";
 
@@ -16,6 +16,14 @@ const MainPage = () => {
     const [emailIsValid, setEmailIsValid] = useState(false)
 
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (phoneIsValid && emailIsValid) {
+            dispatch(setStep0IsValid(true))
+        } else {
+            dispatch(setStep0IsValid(false))
+        }
+    }, [phoneIsValid, emailIsValid])
 
     return (
         <div className="main-page">
@@ -36,7 +44,7 @@ const MainPage = () => {
                 <InputField type="phone" setIsValid={setPhoneIsValid} title={"Номер телефона"} input={form.phone} setInput={v => dispatch(setPhone(v))}/>
                 <InputField type="email" setIsValid={setEmailIsValid} title={"Email"} input={form.email} setInput={v => dispatch(setEmail(v))}/>
 
-                <Btn text={"Начать"} onClick={() => {navigate('/form')}}/>
+                <Btn onClick={() => {navigate('/form')}}>Начать</Btn>
 
             </div>
         </div>

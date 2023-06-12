@@ -1,0 +1,17 @@
+.text-input {
+  position: relative;
+  text-align: start;
+
+  p {
+    margin: 0;
+  }
+
+  p.error {
+    color: red;
+  }
+
+  p.counter {
+    margin: 0!important;
+    float: right;
+  }
+}

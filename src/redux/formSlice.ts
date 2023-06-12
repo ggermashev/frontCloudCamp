@@ -10,10 +10,11 @@ const formSlice = createSlice({
         phone: "",
         email: "",
         sex: "",
-        advantages: [],
-        radio: null,
+        advantages: [] as string[],
+        radio: null as null | string,
         checkbox: [],
-        about: ""
+        about: "",
+        step0IsValid: false
     },
     reducers: {
         setNickname(state, action) {
@@ -37,6 +38,12 @@ const formSlice = createSlice({
         setAdvantages(state, action) {
             state.advantages = action.payload
         },
+        addAdvantage(state) {
+            state.advantages.push("")
+        },
+        removeAdvantage(state, action) {
+            state.advantages = state.advantages.filter((adv, i) => i !== action.payload)
+        },
         setRadio(state, action) {
             state.radio = action.payload
         },
@@ -46,8 +53,11 @@ const formSlice = createSlice({
         setAbout(state, action) {
             state.about = action.payload
         },
+        setStep0IsValid(state, action) {
+            state.step0IsValid = action.payload
+        }
     }
 })
 
 export default formSlice.reducer
-export const {setNickname, setName, setPhone, setAdvantages, setCheckbox, setEmail, setAbout, setSex, setSername, setRadio} = formSlice.actions
+export const {setNickname, setName, setPhone, setAdvantages, addAdvantage, removeAdvantage, setCheckbox, setEmail, setAbout, setSex, setSername, setRadio, setStep0IsValid} = formSlice.actions

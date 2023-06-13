@@ -6,16 +6,32 @@ export interface IInput {
     title?: string,
     input: string,
     setInput: (input: string) => void,
+    placeholder?: string,
     type: "text" | "phone" | "email",
     maxLength?: number,
     allowNumbers?: boolean,
+    required?: boolean,
     setIsValid?: (isValid: boolean) => void,
 }
 
-const InputField: FC<IInput> = ({title, input, setInput, type, setIsValid, maxLength, allowNumbers = true}) => {
+const InputField: FC<IInput> = ({
+                                    title,
+                                    input,
+                                    setInput,
+                                    placeholder,
+                                    type,
+                                    setIsValid,
+                                    maxLength,
+                                    allowNumbers = true,
+                                    required = false
+                                }) => {
 
     const validationText = useMemo(() => {
         if (setIsValid) {
+            if (required && input.length === 0) {
+                setIsValid(false)
+                return "Обязательное поле"
+            }
             switch (type) {
                 case "text":
                     if (maxLength) {
@@ -97,6 +113,7 @@ const InputField: FC<IInput> = ({title, input, setInput, type, setIsValid, maxLe
                 type="text"
                 id={title}
                 value={input}
+                placeholder={placeholder}
                 onChange={e => {
                     setInput(e.target.value)
                 }}

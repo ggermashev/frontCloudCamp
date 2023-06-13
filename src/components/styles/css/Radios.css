@@ -4,5 +4,9 @@
 .radios p {
   margin: 0;
 }
+.radios p.error {
+  margin: 0 !important;
+  color: red;
+}
 
 /*# sourceMappingURL=Radios.css.map */

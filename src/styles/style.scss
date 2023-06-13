@@ -1,3 +1,5 @@
+//@import url(//db.onlinewebfonts.com/c/37086b994764dba84b2ee0f1083bfeed?family=SB+Sans+Interface);
+
 .column-left-flex {
   display: flex;
   flex-direction: column;
@@ -34,6 +36,12 @@ body {
   background-color: lightgrey;
 }
 
+
+* {
+  font-family: "SB Sans Interface", sans-serif;
+}
+
+
 h3 {
   //styleName: Headers/H3 Semibold;
   font-size: 20px;
@@ -51,4 +59,6 @@ p {
   letter-spacing: 0;
   text-align: left;
 }
+
+
 

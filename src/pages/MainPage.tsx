@@ -4,13 +4,18 @@ import "./styles/css/MainPage.css"
 import SocialLink from "../components/SocialLink";
 import InputField from "../components/InputField";
 import {useAppDispatch, useAppSelector} from "../redux";
-import {setEmail, setPhone, setStep0IsValid} from "../redux/formSlice";
+import {setEmail, setPhone} from "../redux/formSlice";
 import Btn from "../components/Btn";
 import {useNavigate} from "react-router-dom";
+import gsap from 'gsap';
+import {setStep0} from "../redux/validSlice";
+
+
 
 const MainPage = () => {
 
     const form = useAppSelector(state => state.form)
+    const valid = useAppSelector(state => state.valid)
     const dispatch = useAppDispatch()
     const [phoneIsValid, setPhoneIsValid] = useState(false)
     const [emailIsValid, setEmailIsValid] = useState(false)
@@ -19,11 +24,13 @@ const MainPage = () => {
 
     useEffect(() => {
         if (phoneIsValid && emailIsValid) {
-            dispatch(setStep0IsValid(true))
+            dispatch(setStep0(true))
         } else {
-            dispatch(setStep0IsValid(false))
+            dispatch(setStep0(false))
         }
     }, [phoneIsValid, emailIsValid])
+
+    const tl = gsap.timeline()
 
     return (
         <div className="main-page">
@@ -41,10 +48,38 @@ const MainPage = () => {
                     </div>
                 </div>
 
-                <InputField type="phone" setIsValid={setPhoneIsValid} title={"Номер телефона"} input={form.phone} setInput={v => dispatch(setPhone(v))}/>
-                <InputField type="email" setIsValid={setEmailIsValid} title={"Email"} input={form.email} setInput={v => dispatch(setEmail(v))}/>
+                <InputField type="phone" setIsValid={setPhoneIsValid} title={"Номер телефона"} input={form.phone}
+                            setInput={v => dispatch(setPhone(v))} required={true} placeholder={'+7 (777) 777-77-77'}/>
+                <InputField type="email" setIsValid={setEmailIsValid} title={"Email"} input={form.email}
+                            setInput={v => dispatch(setEmail(v))} required={true} placeholder={'почта'}/>
 
-                <Btn onClick={() => {navigate('/form')}}>Начать</Btn>
+                <div id={"start-btn-wrap"}
+                     onMouseOver={() => {
+                         if (!valid.step0) {
+                             tl.to('#start-btn', {
+                                 duration: 0.1,
+                                 position: 'relative',
+                                 left: '110%',
+                             })
+                         }
+                     }}
+                     onMouseLeave={() => {
+                         if (!valid.step0) {
+                             tl.to('#start-btn', {
+                                 duration: 0.1,
+                                 left: '0',
+                             })
+                         }
+                     }}
+                >
+                    <Btn
+                        onClick={() => {
+                            navigate('/form')
+                        }}
+                        disabled={!valid.step0}
+                        id={'start-btn'}
+                    >Начать</Btn>
+                </div>
 
             </div>
         </div>

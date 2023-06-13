@@ -6,11 +6,12 @@ interface ITextInput {
     title: string,
     value: string,
     setValue: (val: string) => void,
+    placeholder?: string,
     maxLength?: number,
     setIsValid?: (valid: boolean) => void
 }
 
-const TextInput: FC<ITextInput> = ({title, value, setValue, maxLength, setIsValid}) => {
+const TextInput: FC<ITextInput> = ({title, value, setValue, placeholder, maxLength, setIsValid}) => {
 
     const counter = useMemo(() => {
         return value.replaceAll(' ', '').replaceAll('\n', '').length
@@ -40,6 +41,7 @@ const TextInput: FC<ITextInput> = ({title, value, setValue, maxLength, setIsVali
                 rows={5}
                 id={title}
                 value={value}
+                placeholder={placeholder}
                 onChange={e => {
                     setValue(e.target.value)
                 }}

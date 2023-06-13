@@ -6,11 +6,13 @@ interface IBtn {
     type?: "blue" | "white"
     children: string | React.ReactNode,
     onClick: () => void,
+    disabled?: boolean,
+    id?: string,
 }
 
-const Btn: FC<IBtn> = ({children, onClick, type="blue"}) => {
+const Btn: FC<IBtn> = ({children, onClick, type="blue", disabled=false, id}) => {
     return (
-        <button className={`btn-${type} btn`} onClick={onClick}><p className="p-btn">{children}</p></button>
+        <button id={id} disabled={disabled} className={`btn-${type} btn`} onClick={onClick}><p className="p-btn">{children}</p></button>
     );
 };
 

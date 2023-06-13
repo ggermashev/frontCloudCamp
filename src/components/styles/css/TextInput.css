@@ -6,6 +6,7 @@
   margin: 0;
 }
 .text-input p.error {
+  margin: 0 !important;
   color: red;
 }
 .text-input p.counter {

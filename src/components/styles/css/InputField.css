@@ -8,6 +8,7 @@
 }
 .input-field p.error {
   color: red;
+  margin: 0 !important;
 }
 
 /*# sourceMappingURL=InputField.css.map */

@@ -6,4 +6,9 @@
   p {
     margin: 0;
   }
+
+  p.error {
+    margin: 0!important;
+    color: red;
+  }
 }

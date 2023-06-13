@@ -17,9 +17,9 @@ const CheckBoxes: FC<ICheckBoxes> = ({title, values, answers, setAnswers}) => {
             {values.map((v, i) =>
                 <Form.Check key={i}
                             type="checkbox"
-                            id={v}
+                            id={`${v}`}
                             label={v}
-                            checked={answers.includes(v)}
+                            checked={answers && answers.includes(v)}
                             onChange={e => {
                                 e.target.checked
                                     ? setAnswers([...answers, v])

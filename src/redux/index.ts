@@ -2,9 +2,11 @@ import {combineReducers, configureStore} from "@reduxjs/toolkit";
 
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import formSlice from "./formSlice";
+import validSlice from "./validSlice";
 
 const rootReducer = combineReducers({
-    form: formSlice
+    form: formSlice,
+    valid: validSlice,
 })
 
 export const store = configureStore({

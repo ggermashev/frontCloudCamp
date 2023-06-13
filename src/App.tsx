@@ -14,8 +14,8 @@ function App() {
             <Provider store={store}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path="/" element={<MainPage/>}/>
-                        <Route path="/form" element={<FormPage/>}/>
+                        <Route path="/frontCloudCamp" element={<MainPage/>}/>
+                        <Route path="/frontCloudCamp/form" element={<FormPage/>}/>
                     </Routes>
                 </BrowserRouter>
             </Provider>

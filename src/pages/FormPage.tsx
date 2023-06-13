@@ -119,7 +119,7 @@ const SuccessWindow: FC<IWindow> = function ({onClose}) {
             <Btn
                 onClick={() => {
                     onClose()
-                    navigate('/')
+                    navigate('/frontCloudCamp/')
                 }}
             >На главную</Btn>
         </div>
@@ -161,7 +161,7 @@ const FormPage = () => {
             <div className="row-space-flex navigation">
                 {step === 1
                     ? <Btn type={'white'} onClick={() => {
-                        navigate('/')
+                        navigate('/frontCloudCamp')
                     }}>Назад</Btn>
                     : <Btn type={'white'} onClick={() => {
                         tl.to('.form-step', {

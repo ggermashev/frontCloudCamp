@@ -11,7 +11,6 @@ import gsap from 'gsap';
 import {setStep0} from "../redux/validSlice";
 
 
-
 const MainPage = () => {
 
     const form = useAppSelector(state => state.form)
@@ -37,7 +36,7 @@ const MainPage = () => {
             <div className="column-left-flex">
 
                 <div className="row-left-flex header">
-                    <Image className="ava-img" src={require('../images/ava.jpg')}/>
+                    <Image className="ava-img" src={require('../images/ava.png')}/>
                     <div>
                         <h3>Иван Иванов</h3>
                         <div className="row-left-flex">
@@ -74,7 +73,7 @@ const MainPage = () => {
                 >
                     <Btn
                         onClick={() => {
-                            navigate('/form')
+                            navigate('/frontCloudCamp/form')
                         }}
                         disabled={!valid.step0}
                         id={'start-btn'}

@@ -3,6 +3,7 @@ import {Form} from 'react-bootstrap';
 import "./styles/css/TextInput.css"
 
 interface ITextInput {
+    id?: string,
     title: string,
     value: string,
     setValue: (val: string) => void,
@@ -11,7 +12,7 @@ interface ITextInput {
     setIsValid?: (valid: boolean) => void
 }
 
-const TextInput: FC<ITextInput> = ({title, value, setValue, placeholder, maxLength, setIsValid}) => {
+const TextInput: FC<ITextInput> = ({id, title, value, setValue, placeholder, maxLength, setIsValid}) => {
 
     const counter = useMemo(() => {
         return value.replaceAll(' ', '').replaceAll('\n', '').length
@@ -39,7 +40,7 @@ const TextInput: FC<ITextInput> = ({title, value, setValue, placeholder, maxLeng
             <Form.Control
                 as="textarea"
                 rows={5}
-                id={title}
+                id={id}
                 value={value}
                 placeholder={placeholder}
                 onChange={e => {

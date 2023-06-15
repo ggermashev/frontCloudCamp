@@ -3,6 +3,7 @@ import {Form} from "react-bootstrap";
 import "./styles/css/InputField.css"
 
 export interface IInput {
+    id?: string,
     title?: string,
     input: string,
     setInput: (input: string) => void,
@@ -15,6 +16,7 @@ export interface IInput {
 }
 
 const InputField: FC<IInput> = ({
+                                    id,
                                     title,
                                     input,
                                     setInput,
@@ -46,10 +48,11 @@ const InputField: FC<IInput> = ({
                             return `Числовые значения не допускаются `
                         }
                     }
-                    if (input.search(/\W/) !== -1) {
+                    if (!/^[ёЁА-яa-zA-Z0-9]+$/.test(input)) {
                         setIsValid(false)
                         return `Допускаются только буквы и цифры`
                     }
+
                     setIsValid(true)
                     return ""
 
@@ -111,7 +114,7 @@ const InputField: FC<IInput> = ({
             </Form.Label>}
             <Form.Control
                 type="text"
-                id={title}
+                id={id}
                 value={input}
                 placeholder={placeholder}
                 onChange={e => {

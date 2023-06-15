@@ -20,19 +20,19 @@ const validSlice = createSlice({
     reducers: {
         setStep0(state, action) {
             state.step0 = action.payload
-            state.all = checkAll(state.step0, state.step1, state.step2, state.step3)
+            state.all = checkAll(state.step1, state.step2, state.step3)
         },
         setStep1(state, action) {
             state.step1 = action.payload
-            state.all = checkAll(state.step0, state.step1, state.step2, state.step3)
+            state.all = checkAll(state.step1, state.step2, state.step3)
         },
         setStep2(state, action) {
             state.step2 = action.payload
-            state.all = checkAll(state.step0, state.step1, state.step2, state.step3)
+            state.all = checkAll(state.step1, state.step2, state.step3)
         },
         setStep3(state, action) {
             state.step3 = action.payload
-            state.all = checkAll(state.step0, state.step1, state.step2, state.step3)
+            state.all = checkAll(state.step1, state.step2, state.step3)
         },
     }
 })

@@ -4,6 +4,7 @@
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
+  opacity: 0;
 }
 .main-page p, .main-page h3 {
   padding: 0;
@@ -13,11 +14,14 @@
   border-bottom: 2px solid lightblue;
   width: 100%;
 }
-.main-page .ava-img {
-  width: 100px;
+.main-page .ava-img-wrap {
   height: 100px;
+  width: 100px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url("../../../images/ava.jpg");
+  background-size: 100px auto;
   border-radius: 100%;
-  border: 2px solid lightblue;
   margin-right: 20px;
   margin-bottom: 20px;
 }
@@ -27,7 +31,7 @@
 .main-page .input-field {
   margin-top: 20px;
 }
-.main-page .btn {
+.main-page #start-btn-wrap {
   margin-top: 40px;
 }
 

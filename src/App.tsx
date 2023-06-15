@@ -12,10 +12,10 @@ function App() {
     return (
         <div className="App">
             <Provider store={store}>
-                <BrowserRouter>
+                <BrowserRouter basename={"/frontCloudCamp"}>
                     <Routes>
-                        <Route path="/frontCloudCamp" element={<MainPage/>}/>
-                        <Route path="/frontCloudCamp/form" element={<FormPage/>}/>
+                        <Route path="/" element={<MainPage/>}/>
+                        <Route path="/create" element={<FormPage/>}/>
                     </Routes>
                 </BrowserRouter>
             </Provider>

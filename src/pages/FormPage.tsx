@@ -28,6 +28,7 @@ import {postForm} from "../api";
 import {setStep1, setStep2, setStep3} from "../redux/validSlice";
 import {Simulate} from "react-dom/test-utils";
 import abort = Simulate.abort;
+import Stepper from "../components/Stepper";
 
 interface IStep {
     setIsValid?: (valid: boolean) => void
@@ -48,19 +49,21 @@ const Step1: FC<IStep> = function ({setIsValid}) {
 
     return (
         <FormStep valids={[nicknameIsValid, nameIsValid, sernameIsValid]} setIsValid={setIsValid}>
-            <InputField required={true} title={"Nickname"} input={form.nickname}
+            <InputField required={true} id={"field-nickname"} title={"Nickname"} input={form.nickname}
                         setInput={v => dispatch(setNickname(v))} type={"text"}
                         setIsValid={setNicknameIsValid} maxLength={30}
                         placeholder={"крутой nickname123"}
             />
-            <InputField required={true} title={"Name"} input={form.name} setInput={v => dispatch(setName(v))}
+            <InputField required={true} id={"field-name"} title={"Name"} input={form.name}
+                        setInput={v => dispatch(setName(v))}
                         type={"text"} placeholder={'name'}
                         setIsValid={setNameIsValid} maxLength={50} allowNumbers={false}
             />
-            <InputField required={true} title={"Sername"} input={form.sername} setInput={v => dispatch(setSername(v))}
+            <InputField required={true} id={"field-sername"} title={"Sername"} input={form.sername}
+                        setInput={v => dispatch(setSername(v))}
                         type={"text"} placeholder={'sername'}
                         setIsValid={setSernameIsValid} maxLength={50} allowNumbers={false}/>
-            <SelectInput options={['man', 'woman']} setOption={v => {
+            <SelectInput id={"field-sex"} options={['man', 'woman']} setOption={v => {
                 dispatch(setSex(v))
             }} placeholder={'Не выбрано'} title={'Sex'}/>
         </FormStep>
@@ -72,18 +75,21 @@ const Step2: FC<IStep> = function ({setIsValid}) {
     const dispatch = useAppDispatch()
 
     const [radioIsValid, setRadioIsValid] = useState(false)
+    const [advantagesAreValid, setAdvantagesAreValid] = useState(false)
 
     return (
-        <FormStep valids={[radioIsValid]} setIsValid={setIsValid}>
+        <FormStep valids={[radioIsValid, advantagesAreValid]} setIsValid={setIsValid}>
             <div className="advantages">
-                <ManyInputFields title={"Advantages"} onAdd={() => dispatch(addAdvantage())}
+                <ManyInputFields title={"Advantages"} id={"field-advantages"} onAdd={() => dispatch(addAdvantage())}
                                  onRemove={i => dispatch(removeAdvantage(i))}
                                  values={form.advantages} setValues={vals => dispatch(setAdvantages(vals))}
-                                 type={"text"}/>
+                                 type={"text"} required={true} setIsValid={setAdvantagesAreValid}/>
             </div>
-            <CheckBoxes title={"Checkbox group"} values={['1', '2', '3']} answers={form.checkbox.length > 0 ? form.checkbox.map(ans => ans.toString()) : []}
+            <CheckBoxes title={"Checkbox group"} id={"field-checkbox-group"} values={['1', '2', '3']}
+                        answers={form.checkbox.length > 0 ? form.checkbox.map(ans => ans.toString()) : []}
                         setAnswers={val => dispatch(setCheckbox(val.map(v => +v)))}/>
-            <Radios title={"Radio group"} values={['1', '2', '3']} answer={form.radio?.toString()}
+            <Radios title={"Radio group"} id={"field-radio-group"} values={['1', '2', '3']}
+                    answer={form.radio?.toString()}
                     setAnswer={v => dispatch(setRadio(+v))} setIsValid={setRadioIsValid}/>
         </FormStep>
     );
@@ -98,6 +104,8 @@ const Step3: FC<IStep> = function ({setIsValid}) {
     return (
         <FormStep valids={[textInputIsValid]} setIsValid={setIsValid}>
             <TextInput title={"About"}
+                       id={"field-about"}
+                       placeholder={"Информация о себе"}
                        value={form.about}
                        setValue={v => {
                            dispatch(setAbout(v))
@@ -113,29 +121,34 @@ const SuccessWindow: FC<IWindow> = function ({onClose}) {
     const navigate = useNavigate()
 
     return (
-        <div className="column-center-flex success-window">
-            <h4>Форма успешно отправлена</h4>
-            <Image src={require('../images/success.png')}/>
-            <Btn
-                onClick={() => {
-                    onClose()
-                    navigate('/frontCloudCamp/')
-                }}
-            >На главную</Btn>
-        </div>
+        <ModalWindow>
+            <div className="column-center-flex success-window">
+                <h4>Форма успешно отправлена</h4>
+                <Image src={require('../images/success.png')}/>
+                <Btn
+                    id={"button-to-main"}
+                    onClick={() => {
+                        onClose()
+                        navigate('/')
+                    }}
+                >На главную</Btn>
+            </div>
+        </ModalWindow>
     )
 }
 
 const ErrorWindow: FC<IWindow> = function ({onClose}) {
     return (
-        <div className="error-window column-center-flex">
-            <div className="row-space-flex">
-                <h4>Ошибка</h4>
-                <Image className="x" onClick={() => onClose()} src={require('../images/x.png')}/>
+        <ModalWindow>
+            <div className="error-window column-center-flex">
+                <div className="row-space-flex">
+                    <h4>Ошибка</h4>
+                    <Image className="x" onClick={() => onClose()} src={require('../images/x.png')}/>
+                </div>
+                <Image src={require('../images/error.png')}/>
+                <Btn id={"button-close"} onClick={() => onClose()}>Закрыть</Btn>
             </div>
-            <Image src={require('../images/error.png')}/>
-            <Btn onClick={() => onClose()}>Закрыть</Btn>
-        </div>
+        </ModalWindow>
     )
 }
 
@@ -152,30 +165,52 @@ const FormPage = () => {
 
     const tl = gsap.timeline()
 
+    useEffect(() => {
+        tl.to(".form-page", {
+            duration: 0.5,
+            opacity: 1
+        })
+    }, [])
+
     return (
         <div className="form-page column-left-flex">
-            <Image className="step-img" src={require(`../images/step${step}.png`)}/>
+            {/*<Image className="step-img" src={require(`../images/step${step}.png`)}/>*/}
+            <Stepper steps={3} currentStep={step}/>
             {step === 1 && <Step1 setIsValid={(valid) => dispatch(setStep1(valid))}/>}
             {step === 2 && <Step2 setIsValid={(valid) => dispatch(setStep2(valid))}/>}
             {step === 3 && <Step3 setIsValid={(valid) => dispatch(setStep3(valid))}/>}
             <div className="row-space-flex navigation">
                 {step === 1
-                    ? <Btn type={'white'} onClick={() => {
-                        navigate('/frontCloudCamp')
-                    }}>Назад</Btn>
-                    : <Btn type={'white'} onClick={() => {
-                        tl.to('.form-step', {
-                            duration: 1,
-                            ease: "power1",
-                            left: '-600px',
-                        })
-                        setTimeout(() => setStep(Math.max(1, step - 1)), 1000)
-                    }}>Назад</Btn>}
+                    ? <Btn type={'white'}
+                           id={"button-back"}
+                           onClick={() => {
+                               tl.to(".form-page", {
+                                   duration: 0.5,
+                                   opacity: 0
+                               }).then(() => navigate('/'))
+                           }}>Назад</Btn>
+                    : <Btn type={'white'}
+                           id={"button-back"}
+                           onClick={() => {
+                               tl.to('.form-step', {
+                                   duration: 1,
+                                   ease: "power1",
+                                   left: '-600px',
+                               })
+                               setTimeout(() => setStep(Math.max(1, step - 1)), 1000)
+                           }}>Назад</Btn>}
 
                 <div id={'next-btn-wrap'}
                      onMouseOver={() => {
-                         if (step === 1 && !valid.step1 || step === 2 && !valid.step2 || step === 3 && !valid.step3) {
-                             tl.to('#next-btn', {
+                         if (step === 1 && !valid.step1 || step === 2 && !valid.step2) {
+                             tl.to('#button-next', {
+                                 duration: 0.1,
+                                 position: 'relative',
+                                 left: '-110%',
+                             })
+                         }
+                         if (step === 3 && !valid.step3) {
+                             tl.to('#button-send', {
                                  duration: 0.1,
                                  position: 'relative',
                                  left: '-110%',
@@ -183,8 +218,14 @@ const FormPage = () => {
                          }
                      }}
                      onMouseLeave={() => {
-                         if (step === 1 && !valid.step1 || step === 2 && !valid.step2 || step === 3 && !valid.step3) {
-                             tl.to('#next-btn', {
+                         if (step === 1 && !valid.step1 || step === 2 && !valid.step2) {
+                             tl.to('#button-next', {
+                                 duration: 0.1,
+                                 left: '0',
+                             })
+                         }
+                         if (step === 3 && !valid.step3) {
+                             tl.to('#button-send', {
                                  duration: 0.1,
                                  left: '0',
                              })
@@ -192,13 +233,11 @@ const FormPage = () => {
                      }}
                 >
                     {step === 3
-                        ? <Btn id={'next-btn'}
+                        ? <Btn id={'button-send'}
                                onClick={() => {
                                    if (valid.all) {
                                        postForm(form).then(
                                            ans => {
-                                               console.log(form)
-                                               console.log(ans)
                                                dispatch(clearForm())
                                                setShowSuccessModal(true)
                                            },
@@ -210,10 +249,10 @@ const FormPage = () => {
                                        setShowErrorModal(true)
                                    }
                                }}
-                               disabled={!valid.step3}
+                               disabled={!valid.all}
                         >Отправить</Btn>
                         : <Btn
-                            id={'next-btn'}
+                            id={'button-next'}
                             disabled={step === 1 && !valid.step1 || step === 2 && !valid.step2 || step === 3 && !valid.step3}
                             onClick={() => {
                                 tl.to('.form-step', {
@@ -226,10 +265,10 @@ const FormPage = () => {
                         >Далее</Btn>}
                 </div>
             </div>
-            {showSuccessModal && createPortal(<ModalWindow><SuccessWindow
-                onClose={() => setShowSuccessModal(false)}/></ModalWindow>, document.body)}
-            {showErrorModal && createPortal(<ModalWindow><ErrorWindow
-                onClose={() => setShowErrorModal(false)}/></ModalWindow>, document.body)}
+            {showSuccessModal && createPortal(<SuccessWindow
+                onClose={() => setShowSuccessModal(false)}/>, document.body)}
+            {showErrorModal && createPortal(<ErrorWindow
+                onClose={() => setShowErrorModal(false)}/>, document.body)}
         </div>
     );
 };

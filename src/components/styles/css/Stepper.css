@@ -1,0 +1,29 @@
+.stepper {
+  width: 100%;
+}
+.stepper .rays {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.stepper .rays p {
+  margin: 0 !important;
+}
+.stepper .rays .ray {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+}
+.stepper .rays .ray-circle {
+  width: 15px;
+  height: auto;
+}
+.stepper .rays .ray-bar {
+  background-color: lightgrey;
+  width: 100%;
+  height: 5px;
+}
+
+/*# sourceMappingURL=Stepper.css.map */

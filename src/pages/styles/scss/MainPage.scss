@@ -4,6 +4,7 @@
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
+  opacity: 0;
 
   p, h3 {
     padding: 0;
@@ -15,11 +16,14 @@
     width: 100%;
   }
 
-  .ava-img {
-    width: 100px;
+  .ava-img-wrap {
     height: 100px;
+    width: 100px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url("../../../images/ava.jpg");
+    background-size: 100px auto;
     border-radius: 100%;
-    border: 2px solid lightblue;
     margin: {
       right: 20px;
       bottom: 20px;
@@ -36,7 +40,7 @@
     margin-top: 20px;
   }
 
-  .btn{
+  #start-btn-wrap {
     margin-top: 40px;
   }
 

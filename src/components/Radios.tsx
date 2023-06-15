@@ -3,6 +3,7 @@ import {Form} from "react-bootstrap";
 import "./styles/css/Radios.css"
 
 interface IRadios {
+    id?: string,
     title: string,
     values: string[],
     answer: string | undefined | null,
@@ -10,7 +11,7 @@ interface IRadios {
     setIsValid?: (valid: boolean) => void,
 }
 
-const Radios: FC<IRadios> = ({title, values, answer, setAnswer, setIsValid}) => {
+const Radios: FC<IRadios> = ({id, title, values, answer, setAnswer, setIsValid}) => {
 
     const validationText = useMemo(() => {
         if (setIsValid) {
@@ -30,6 +31,7 @@ const Radios: FC<IRadios> = ({title, values, answer, setAnswer, setIsValid}) => 
             <Form>
                 {values.map((v, i) =>
                     <Form.Check name={title}
+                                id={`${id}-option-${i+1}`}
                                 onChange={e => e.target.checked && setAnswer(v)}
                                 type={"radio"}
                                 key={i}

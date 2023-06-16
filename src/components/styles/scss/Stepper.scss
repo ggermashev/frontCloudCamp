@@ -8,6 +8,7 @@
 
     p {
       margin: 0!important;
+      color: #666666
     }
 
     .ray {
@@ -17,15 +18,21 @@
       align-items: center;
     }
 
+    .last-ray {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+
     .ray-circle {
-      width: 15px;
-      height: auto;
+      width: 16px;
+      height: 16px;
     }
 
     .ray-bar {
       background-color: lightgrey;
       width: 100%;
-      height: 5px;
+      height: 8px;
     }
 
 

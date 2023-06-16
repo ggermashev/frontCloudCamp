@@ -1,17 +1,40 @@
 .form-page {
   position: relative;
   background-color: white;
-  max-width: 600px;
+  max-width: 900px;
   margin: 30px auto;
   padding: 40px;
   overflow: hidden;
   opacity: 0;
 }
-.form-page .step-img {
-  width: 100%;
+.form-page .stepper {
+  margin-bottom: 18px;
+}
+.form-page .input-field, .form-page .select-input, .form-page .many-input-fields, .form-page .text-input {
+  margin-top: 48px;
+}
+@media screen and (max-height: 700px) {
+  .form-page .input-field, .form-page .select-input, .form-page .many-input-fields, .form-page .text-input {
+    margin-top: 24px;
+  }
+}
+.form-page .checkboxes, .form-page .radios {
+  margin-top: 24px;
+}
+@media screen and (max-height: 700px) {
+  .form-page .checkboxes, .form-page .radios {
+    margin-top: 12px;
+  }
 }
 .form-page .navigation {
-  margin-top: 40px;
+  margin-top: 88px;
+  margin-bottom: 80px;
+}
+@media screen and (max-height: 700px) {
+  .form-page .navigation {
+    margin-top: 66px;
+    margin-bottom: 40px;
+  }
 }
 .form-page .text-input {
   width: 100% !important;

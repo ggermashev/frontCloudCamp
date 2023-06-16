@@ -1,18 +1,40 @@
 .form-page {
   position: relative;
   background-color: white;
-  max-width: 600px;
+  max-width: 900px;
   margin: 30px auto;
   padding: 40px;
   overflow: hidden;
   opacity: 0;
 
-  .step-img {
-    width: 100%;
+  .stepper {
+    margin-bottom: 18px;
+  }
+
+  .input-field, .select-input, .many-input-fields, .text-input {
+    margin-top: 48px;
+
+    @media screen and (max-height: 700px) {
+      margin-top: 24px;
+    }
+  }
+
+  .checkboxes, .radios {
+    margin-top: 24px;
+
+    @media screen and (max-height: 700px) {
+      margin-top: 12px;
+    }
   }
 
   .navigation {
-    margin-top: 40px;
+    margin-top: 88px;
+    margin-bottom: 80px;
+
+    @media screen and (max-height: 700px) {
+      margin-top: 66px;
+      margin-bottom: 40px;
+    }
   }
 
   .text-input {

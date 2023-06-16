@@ -45,7 +45,7 @@ const MainPage = () => {
                     <div className="ava-img-wrap"/>
                     <div>
                         <h3>Григорий Гермашев</h3>
-                        <div className="row-left-flex">
+                        <div className="row-left-flex links">
                             <SocialLink link={"https://t.me/g_grm"} title={"Telegram"}/>
                             <SocialLink link={"https://github.com/ggermashev?tab=repositories"} title={"GitHub"}/>
                             <SocialLink link={"https://hh.ru/resume/e3780d9eff0bf059ae0039ed1f587a6c487079"} title={"Resume"}/>

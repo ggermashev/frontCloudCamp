@@ -78,12 +78,12 @@ const Step2: FC<IStep> = function ({setIsValid}) {
     const [advantagesAreValid, setAdvantagesAreValid] = useState(false)
 
     return (
-        <FormStep valids={[radioIsValid, advantagesAreValid]} setIsValid={setIsValid}>
+        <FormStep valids={[radioIsValid]} setIsValid={setIsValid}>
             <div className="advantages">
                 <ManyInputFields title={"Advantages"} id={"field-advantages"} onAdd={() => dispatch(addAdvantage())}
                                  onRemove={i => dispatch(removeAdvantage(i))}
                                  values={form.advantages} setValues={vals => dispatch(setAdvantages(vals))}
-                                 type={"text"} required={true} setIsValid={setAdvantagesAreValid}/>
+                                 type={"text"} />
             </div>
             <CheckBoxes title={"Checkbox group"} id={"field-checkbox-group"} values={['1', '2', '3']}
                         answers={form.checkbox.length > 0 ? form.checkbox.map(ans => ans.toString()) : []}
@@ -174,7 +174,6 @@ const FormPage = () => {
 
     return (
         <div className="form-page column-left-flex">
-            {/*<Image className="step-img" src={require(`../images/step${step}.png`)}/>*/}
             <Stepper steps={3} currentStep={step}/>
             {step === 1 && <Step1 setIsValid={(valid) => dispatch(setStep1(valid))}/>}
             {step === 2 && <Step2 setIsValid={(valid) => dispatch(setStep2(valid))}/>}
@@ -195,7 +194,7 @@ const FormPage = () => {
                                tl.to('.form-step', {
                                    duration: 1,
                                    ease: "power1",
-                                   left: '-600px',
+                                   left: '-900px',
                                })
                                setTimeout(() => setStep(Math.max(1, step - 1)), 1000)
                            }}>Назад</Btn>}
@@ -258,7 +257,7 @@ const FormPage = () => {
                                 tl.to('.form-step', {
                                     duration: 1,
                                     ease: "power1",
-                                    left: '-600px',
+                                    left: '-900px',
                                 })
                                 setTimeout(() => setStep(step + 1), 1000)
                             }}

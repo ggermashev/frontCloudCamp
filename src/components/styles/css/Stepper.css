@@ -9,6 +9,7 @@
 }
 .stepper .rays p {
   margin: 0 !important;
+  color: #666666;
 }
 .stepper .rays .ray {
   display: flex;
@@ -16,14 +17,19 @@
   width: 100%;
   align-items: center;
 }
+.stepper .rays .last-ray {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 .stepper .rays .ray-circle {
-  width: 15px;
-  height: auto;
+  width: 16px;
+  height: 16px;
 }
 .stepper .rays .ray-bar {
   background-color: lightgrey;
   width: 100%;
-  height: 5px;
+  height: 8px;
 }
 
 /*# sourceMappingURL=Stepper.css.map */

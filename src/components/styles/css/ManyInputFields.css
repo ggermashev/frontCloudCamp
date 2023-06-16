@@ -1,8 +1,9 @@
-.many-input-fields .input-field {
-  margin: 5px 0;
-}
 .many-input-fields p {
   margin: 0;
+}
+.many-input-fields .input-field {
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 .many-input-fields .remove-img {
   margin-left: 10px;

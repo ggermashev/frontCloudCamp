@@ -37,7 +37,7 @@ html {
 }
 
 body {
-  background-color: lightgrey;
+  background-color: #F4F4F5;
 }
 
 a {
@@ -62,6 +62,14 @@ p, a {
   line-height: 20px;
   letter-spacing: 0;
   text-align: left;
+}
+
+input, select {
+  height: 44px;
+}
+
+.btn {
+  height: 44px;
 }
 
 /*# sourceMappingURL=style.css.map */

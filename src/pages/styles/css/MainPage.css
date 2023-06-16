@@ -1,22 +1,42 @@
 .main-page {
   position: relative;
   background-color: white;
-  max-width: 600px;
+  max-width: 900px;
+  min-height: 704px;
   margin: 30px auto;
   padding: 20px;
   opacity: 0;
+}
+@media screen and (max-height: 705px) {
+  .main-page {
+    min-height: 500px;
+  }
 }
 .main-page p, .main-page h3 {
   padding: 0;
   margin: 0;
 }
 .main-page .header {
-  border-bottom: 2px solid lightblue;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   width: 100%;
 }
+.main-page .header .links {
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+@media screen and (max-width: 400px) {
+  .main-page .header .links {
+    flex-direction: column;
+    align-items: start;
+    gap: 5px;
+  }
+}
 .main-page .ava-img-wrap {
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
+  min-height: 80px;
+  min-width: 80px;
   background-position: center center;
   background-repeat: no-repeat;
   background-image: url("../../../images/ava.jpg");
@@ -25,14 +45,11 @@
   margin-right: 20px;
   margin-bottom: 20px;
 }
-.main-page .social-link {
-  padding-right: 10px;
-}
 .main-page .input-field {
-  margin-top: 20px;
+  margin-top: 24px;
 }
 .main-page #start-btn-wrap {
-  margin-top: 40px;
+  margin-top: 48px;
 }
 
 /*# sourceMappingURL=MainPage.css.map */
